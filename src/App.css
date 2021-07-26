@@ -1,9 +1,19 @@
 .App {
   text-align: center;
 }
-.marginForm {
-  margin-top: 5% !important;
-}
 html, body {
   height: 100%
 }
+.marginForm {
+  margin-top: 5% !important;
+}
+.marginButton {
+  margin-top: 7% !important;
+}
+.messagePos {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
