@@ -16,4 +16,27 @@ html, body {
   left: 50%;
   transform: translate(-50%, -50%);
 }
+.blue {
+  color:  #4183c4;
+}
+.no-color {
+  color: white;
+}
+.no-color:hover {
+  color: white;
+}
+.link-black {
+  color: black;
+  padding: 6px;
+}
 
+.link-black:hover {
+  color: black;
+}
+
+.active-item {
+  border: none;
+}
+.line {
+  line-height: 1.6;
+}

@@ -1,5 +1,8 @@
-import React, { useState, useEffect } from 'react';
+import React, { useContext } from 'react';
 import { Link } from 'react-router-dom';
+import { Menu, Image  } from 'semantic-ui-react';
+import logo from '../images/logo.jpg';
+import { Context } from '../context/Context';
 
 const menuPos = {
   marginRight: '3%',
@@ -16,35 +19,31 @@ const pos = {
 };
 
 export default function Navbar() {
-const [input, setInput] = useState(0);
-const [isMobile, setIsMobile] = useState(false);
-
-const handleResize = () => {
-  if (window.innerWidth < 720) {
-    setIsMobile(true);
-  } else {
-    setIsMobile(false);
-  }
-};
-
-useEffect( () => {
-  window.addEventListener("resize", handleResize);
-})
+const { isMobile } = useContext(Context);
 
   return (
     <div style={pos}>
     <div className="ui secondary menu" style={ isMobile ? menuPos2 : menuPos }>
-      <div className="menu right" style={isMobile ?  {margin: 'auto'} : null }>  
-        <Link to="/" onClick={e => setInput(parseInt(e.target.getAttribute('value')))} className={ input === 0 ? 'item active' : 'item' } value={0}>
-          Home
-        </Link>
-        <Link  to="/report" onClick={e => setInput(parseInt(e.target.getAttribute('value')))} className={ input === 1 ? 'item active' : 'item' } value={1}>
-          Send report
-        </Link>
-        <Link  to="/reports" onClick={e => setInput(parseInt(e.target.getAttribute('value')))} className={ input === 2 ? 'item active' : 'item' } value={2}>
-          All Reports
-        </Link>
-    </div>
+      <Menu.Item>
+        <Image size={isMobile ? 'mini' : 'tiny'} src={logo} />
+      </Menu.Item>
+      <Menu.Menu position="right" style={isMobile ?  {margin: 'auto'} : null }>  
+        <Menu.Item>
+          <Link to="/" className="active-item link-black item">
+            Home
+          </Link>
+        </Menu.Item>
+        <Menu.Item>
+          <Link  to="/report" className="active-item link-black item">
+            Send report
+          </Link>
+        </Menu.Item>
+        <Menu.Item>
+          <Link  to="/reports" className="active-item link-black item">
+            All Reports
+          </Link>
+        </Menu.Item>
+    </Menu.Menu>
   </div>
   </div>
   );

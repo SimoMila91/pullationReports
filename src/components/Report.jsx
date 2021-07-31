@@ -1,9 +1,9 @@
 import React, { useState, useMemo, useEffect } from 'react';
-import { useHistory } from 'react-router-dom';
-import { Form, Button, Container, Header, Dropdown, Icon, Message } from 'semantic-ui-react';
+import { Form, Button, Container, Header, Dropdown, Icon, Message, TextArea } from 'semantic-ui-react';
 import countryList from 'react-select-country-list';
 import Compress from 'react-image-file-resizer';
 import axios from 'axios';
+import MessageModal from './MessageModal';
 
 
 
@@ -19,6 +19,7 @@ const button = {
 
 export default function Report() {
   const [city, setCity] = useState('');
+  const [description, setDescription] = useState("");
   const [address, setAddress] = useState('');
   const [country, setCountry] = useState('');
   const [control, setControl] = useState(false);
@@ -29,7 +30,7 @@ export default function Report() {
     variant: false,
     message: ''
   });
-  let history = useHistory();
+  const [modal, setModal] = useState(false);
 
   const options = useMemo(() => countryList().getData(), []);
 
@@ -41,6 +42,7 @@ export default function Report() {
     data.append("city", city);
     data.append("address", address);
     data.append("country", country);
+    data.append("description", description);
 
     axios.post("http://localhost:3000/upload", data)
       .then(res => {
@@ -48,10 +50,20 @@ export default function Report() {
           variant: true,
           message: res.data
         });
-        setTimeout(() => history.push('/'), 4000);
+        setTimeout(() => {
+          setModal(true);
+          setMessage({
+            variant: false,
+            message: ''
+          })
+        }, 3000);
       })
       .catch(err => console.log(err));
   }; 
+
+  const closeModal = () => {
+    setModal(false);
+  };
 
   useEffect(() => {
     if  (city !== "" &&  address !== "" && country !== "" && name !== undefined) {
@@ -91,7 +103,7 @@ export default function Report() {
   };
 
   return (
-    <Container>
+    <Container textAlign="center">
       {
         !message.variant ? 
         <>
@@ -123,6 +135,13 @@ export default function Report() {
                   onChange={e => setAddress(e.target.value)}
                 /> 
               </Form.Group>
+              <Form.Field
+              className="marginForm"
+                control={TextArea}
+                label="Description"
+                placeholder="Describe what you see..."
+                onChange={e => setDescription(e.target.value)}
+              />
               <Form.Field className="marginForm">
               <label>Pollution's image</label>
                     <Button as="label" htmlFor="file" type="button" animated="fade">
@@ -170,6 +189,7 @@ export default function Report() {
        />
       </div>
       }
+      <MessageModal open={modal} closeModal={closeModal} />
     </Container>
   );
 }
