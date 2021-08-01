@@ -1,9 +1,10 @@
 .App {
-  text-align: center;
+  height: 100% !important; 
 }
 html, body {
-  height: 100%
+  height: 100%;
 }
+
 .marginForm {
   margin-top: 5% !important;
 }
@@ -39,4 +40,19 @@ html, body {
 }
 .line {
   line-height: 1.6;
+}
+
+.item-pad {
+  padding-right: 0 !important;
+}
+
+.dropdown-menu {
+  font-size: 22px !important;
+  margin-top: 20px !important;
+}
+.marg-auto {
+  margin: auto;
+}
+.tran-img:hover {
+  width: 400px !important;
 }

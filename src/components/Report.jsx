@@ -66,12 +66,12 @@ export default function Report() {
   };
 
   useEffect(() => {
-    if  (city !== "" &&  address !== "" && country !== "" && name !== undefined) {
+    if  (city !== "" &&  address !== "" && country !== "" && name !== undefined && description !== "" && description.length <= 450) {
       setControl(true); 
     } else {
       setControl(false);
     }
-  }, [city, address, country, name]);
+  }, [city, address, country, name, description]);
 
   const changeHandler = (e, value) => {
     let res = countryList().getLabel(value.value);
@@ -101,6 +101,8 @@ export default function Report() {
       setError(true);
     }
   };
+
+  const descLen = description.length > 450 ? { error: "450 characters  maximux"} : null;
 
   return (
     <Container textAlign="center">
@@ -138,8 +140,10 @@ export default function Report() {
               <Form.Field
               className="marginForm"
                 control={TextArea}
+                {...descLen}
                 label="Description"
-                placeholder="Describe what you see..."
+                maxlength="490"
+                placeholder="Describe what you see...450 characters maximux"
                 onChange={e => setDescription(e.target.value)}
               />
               <Form.Field className="marginForm">

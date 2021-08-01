@@ -8,14 +8,16 @@ import { ContextProvider } from './context/Context';
 
 export default function App() {
   return (
-    <div>
-      <BrowserRouter>
-        <ContextProvider>
-          <Navbar />
-            <Main />
-        </ContextProvider>
-      </BrowserRouter>
-      <Footer />
+    <div className="App">
+        <BrowserRouter>
+          <ContextProvider>
+            <Navbar />
+              <div style={{ paddingBottom: '9%'}}>
+                <Main />
+              </div>
+              <Footer />
+          </ContextProvider>
+        </BrowserRouter>
     </div>
   )
 }

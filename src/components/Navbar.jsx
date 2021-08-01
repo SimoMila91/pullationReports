@@ -1,8 +1,9 @@
 import React, { useContext } from 'react';
 import { Link } from 'react-router-dom';
-import { Menu, Image  } from 'semantic-ui-react';
+import { Menu, Image } from 'semantic-ui-react';
 import logo from '../images/logo.jpg';
 import { Context } from '../context/Context';
+import MobileMenu from './MobileMenu';
 
 const menuPos = {
   marginRight: '3%',
@@ -25,9 +26,14 @@ const { isMobile } = useContext(Context);
     <div style={pos}>
     <div className="ui secondary menu" style={ isMobile ? menuPos2 : menuPos }>
       <Menu.Item>
-        <Image size={isMobile ? 'mini' : 'tiny'} src={logo} />
+        <Link to="/"><Image size='tiny' src={logo} /></Link>
       </Menu.Item>
-      <Menu.Menu position="right" style={isMobile ?  {margin: 'auto'} : null }>  
+      <Menu.Menu position="right">  
+      {
+        isMobile ? 
+        <MobileMenu />
+        :
+        <>
         <Menu.Item>
           <Link to="/" className="active-item link-black item">
             Home
@@ -43,6 +49,9 @@ const { isMobile } = useContext(Context);
             All Reports
           </Link>
         </Menu.Item>
+      </>
+      }
+      
     </Menu.Menu>
   </div>
   </div>
