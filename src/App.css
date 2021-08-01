@@ -1,10 +1,12 @@
-.App {
-  height: 100% !important; 
-}
-html, body {
+html,
+body,
+#root {
   height: 100%;
 }
 
+.App {
+  height: 100% !important; 
+}
 .marginForm {
   margin-top: 5% !important;
 }
@@ -56,3 +58,4 @@ html, body {
 .tran-img:hover {
   width: 400px !important;
 }
+

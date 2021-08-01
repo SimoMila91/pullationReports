@@ -12,10 +12,10 @@ export default function App() {
         <BrowserRouter>
           <ContextProvider>
             <Navbar />
-              <div style={{ paddingBottom: '9%'}}>
-                <Main />
-              </div>
-              <Footer />
+            <div style={{ paddingBottom: '9%'}}>
+              <Main />
+            </div>
+            <Footer />
           </ContextProvider>
         </BrowserRouter>
     </div>

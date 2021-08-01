@@ -23,6 +23,7 @@ export default function Navbar() {
 const { isMobile } = useContext(Context);
 
   return (
+    <>
     <div style={pos}>
     <div className="ui secondary menu" style={ isMobile ? menuPos2 : menuPos }>
       <Menu.Item>
@@ -55,5 +56,6 @@ const { isMobile } = useContext(Context);
     </Menu.Menu>
   </div>
   </div>
+  </>
   );
 }

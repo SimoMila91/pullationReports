@@ -15,6 +15,7 @@ const largeButton = {
 export default function Home() {
   const { isMobile } = useContext(Context);
   return (
+    <>
     <Container>
       <div style={pos}>
         <Grid columns={isMobile ? 1 : 2}>
@@ -51,5 +52,6 @@ export default function Home() {
         </Grid>
       </div>
     </Container>
+    </>
   );
 }
