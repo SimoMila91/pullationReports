@@ -44,7 +44,7 @@ export default function Report() {
     data.append("country", country);
     data.append("description", description);
 
-    axios.post("http://localhost:3000/upload", data)
+    axios.post("https://pollutionreports.herokuapp.com/upload", data)
       .then(res => {
         setMessage({
           variant: true,

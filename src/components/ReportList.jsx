@@ -23,7 +23,7 @@ export default function ReportList() {
   }
 
   useEffect(() => {
-    axios.get("http://localhost:3000/reports")
+    axios.get("https://pollutionreports.herokuapp.com/reports")
       .then(res => {
         console.log(res);
         setReports(res.data);
