@@ -74,7 +74,7 @@ export default function ReportList() {
                       <Segment style={heightSegment}>
                       <Item.Group>
                         <Item relaxed>
-                          <Item.Image size="medium"  src={`http://localhost:3000/images/${report.image}`} alt="ciao" className="tran-img" />
+                          <Item.Image size="medium"  src={`https://localhost:3000/images/${report.image}`} alt="ciao" className="tran-img" />
                           <Item.Content>
                             <Item.Header as="h4">{report.country}</Item.Header>
                             <Item.Meta>
