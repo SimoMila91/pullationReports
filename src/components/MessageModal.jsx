@@ -5,11 +5,6 @@ import { Modal, Button } from 'semantic-ui-react';
 export default function MessageModal({open, closeModal}) {
   let history = useHistory();
 
-  const rel = e => {
-    closeModal();
-    window.location.reload();
-  }
-
   return (
     <Modal
         size="mini"
@@ -24,7 +19,7 @@ export default function MessageModal({open, closeModal}) {
           <Button negative onClick={e => history.push('/')}>
             No
           </Button>
-          <Button positive onClick={rel}>
+          <Button positive onClick={closeModal}>
             Yes
           </Button>
         </Modal.Actions>

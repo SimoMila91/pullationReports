@@ -42,7 +42,7 @@ export default function Report() {
     data.append("city", city);
     data.append("address", address);
     data.append("country", country);
-    data.append("description", description);
+    data.append("description", description.replaceAll("'", "''"));
 
     axios.post("https://pollutionreports.herokuapp.com/upload", data)
       .then(res => {
@@ -50,15 +50,20 @@ export default function Report() {
           variant: true,
           message: res.data
         });
+        setAddress('');
+        setCity('');
+        setCountry('');
+        setName('');
+        setFile();
+        setDescription('');
         setTimeout(() => {
-          setModal(true);
           setMessage({
-            variant: false,
-            message: ''
+              variant: false,
+              message: ''
           })
-        }, 3000);
-      })
-      .catch(err => console.log(err));
+          setModal(true);
+        }, 6000);
+      }).catch(err => console.log(err));
   }; 
 
   const closeModal = () => {

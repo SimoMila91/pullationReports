@@ -3,7 +3,6 @@ body,
 #root {
   height: 100%;
 }
-
 .App {
   height: 100% !important; 
 }
@@ -14,10 +13,7 @@ body,
   margin-top: 7% !important;
 }
 .messagePos {
-  position: fixed;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
+  padding-bottom: 30%;
 }
 .blue {
   color:  #4183c4;
