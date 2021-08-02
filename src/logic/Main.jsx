@@ -10,9 +10,9 @@ import {
 export default function Main() {
   return (
       <Switch>
-        <Route exact path="/"  component={Home} />
-        <Route exact path="/report" component={Report} />
-        <Route exact path="/reports" component={ReportList} />
+        <Route  path="/" exact component={Home} />
+        <Route  path="/report" component={Report} />
+        <Route  path="/reports" component={ReportList} />
         <Route render= { () => {
           return <p>404 - page not found</p>
         }} />
