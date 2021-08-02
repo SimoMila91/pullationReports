@@ -25,7 +25,6 @@ export default function ReportList() {
   useEffect(() => {
     axios.get("https://pollutionreports.herokuapp.com/reports")
       .then(res => {
-        console.log(res);
         setReports(res.data);
       }).catch(err => console.log(err));
   }, []);
