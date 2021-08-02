@@ -8,7 +8,6 @@ import MessageModal from './MessageModal';
 
 
 const formStyle = {
-  width: '36rem',
   margin: 'auto',
   textAlign: 'left'
 };
@@ -113,7 +112,7 @@ export default function Report() {
     <Container textAlign="center">
       {
         !message.variant ? 
-        <>
+        <Container>
           <Header as='h2'>Where do you want to report the pollution?</Header>
           <div style={formStyle} className="marginForm">
             <Form onSubmit={onSubmit}>
@@ -188,7 +187,7 @@ export default function Report() {
               </Form.Group>
             </Form>
           </div>
-      </>
+      </Container>
       : 
       <div className="messagePos">
         <Message 

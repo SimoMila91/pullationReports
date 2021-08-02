@@ -1,7 +1,8 @@
 import React, { useState, useEffect, useContext } from 'react';
-import { Container, Item, Grid, Segment, Header, Popup, Input } from 'semantic-ui-react';
+import { Container, Item, Grid, Segment, Header, Popup, Input, Image } from 'semantic-ui-react';
 import axios from 'axios';
 import { Context } from '../context/Context';
+import noFound from '../images/3024051.jpg';
 
 const heightSegment = {
   minHeight: 300
@@ -43,7 +44,7 @@ export default function ReportList() {
         <Container fluid textAlign="center" style={padCont}>
         <Grid>
           <Grid.Column width={16}>
-            <div  style={{padding: 70, width: 500, margin: 'auto'}}>
+            <Container  style={{paddingTop: 70, paddingBottom: 70, width: isMobile ? 400 : 500, margin: 'auto'}}>
             <Popup
                     trigger={<Input 
                                       focus
@@ -57,14 +58,20 @@ export default function ReportList() {
                    content="You can search for a country or a city"
                    on={isMobile ? 'focus' : 'hover'}
                   />
-            </div>
+            </Container>
           </Grid.Column>
           <Grid.Column width={16}>
-            <div>
               <Header style={{padding: 40}}>Database Results</Header>
               {
                 reports.length === 0 ? 
                 <div style={{height: 1000}}>Loading...</div>
+                : 
+                results.length === 0 ? 
+                <Container>
+                  <Image src={noFound} alt="no results found" />
+                  <h3>NO RESULTS FOUND</h3>
+                  <a href='https://www.freepik.com/vectors/data'>Data vector created by stories - www.freepik.com</a>
+                </Container>
                 : 
                 <Grid columns={ large ? 2 : 1}>
                 {
@@ -90,11 +97,9 @@ export default function ReportList() {
                 }
                 </Grid>
               }
-            </div>
           </Grid.Column>        
         </Grid>  
       </Container>
-     
       </div>
     </Container>
   )
