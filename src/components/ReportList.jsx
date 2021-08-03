@@ -56,7 +56,7 @@ export default function ReportList() {
     const res = reports.filter(o => 
         o.country.toLowerCase().includes(input.toLowerCase().trim()) 
         || o.city.toLowerCase().includes(input.toLowerCase().trim()));
-        setResults(res);
+    setResults(res);
   }, [input, reports])
 
   return (
