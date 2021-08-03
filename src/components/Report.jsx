@@ -43,7 +43,7 @@ export default function Report() {
     data.append("country", country);
     data.append("description", description.replaceAll("'", "''"));
 
-    axios.post("https://pollutionreports.netlify.app/reports/upload", data)
+    axios.post("https://pollutionreports.herokuapp.com//upload", data)
       .then(res => {
         setMessage({
           variant: true,

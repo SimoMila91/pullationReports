@@ -31,7 +31,7 @@ export default function ReportList() {
 
   const fetchReports = async () => {
     try {
-      const res = await axios.get("https://pollutionreports.netlify.app/reports/reports", {
+      const res = await axios.get("https://pollutionreports.herokuapp.com//reports", {
         onDownloadProgress: (progressEvent) => {
           let percentCompleted = Math.round(progressEvent.loaded * 100  / progressEvent.total);
           setProgress(setInterval(() => percentCompleted, 10)); // progress is set every 10 milliseconds
