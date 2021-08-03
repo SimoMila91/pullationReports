@@ -43,7 +43,7 @@ export default function Report() {
     data.append("country", country);
     data.append("description", description.replaceAll("'", "''"));
 
-    axios.post("https://pollutionreports.herokuapp.com/upload", data)
+    axios.post("http://localhost:3000/upload", data)
       .then(res => {
         setMessage({
           variant: true,
@@ -52,7 +52,7 @@ export default function Report() {
         setAddress('');
         setCity('');
         setCountry('');
-        setName('');
+        setName();
         setFile();
         setDescription('');
         setTimeout(() => {
@@ -146,7 +146,7 @@ export default function Report() {
                 control={TextArea}
                 {...descLen}
                 label="Description"
-                maxlength="490"
+                maxLength="490"
                 placeholder="Describe what you see...450 characters maximux"
                 onChange={e => setDescription(e.target.value)}
               />
