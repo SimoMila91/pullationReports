@@ -31,16 +31,16 @@ export default function ReportList() {
 
   const fetchReports = async () => {
     try {
-      const res = await axios.get("http://localhost:3000/reports", {
+      const res = await axios.get("https://pollutionreports.netlify.app/reports/reports", {
         onDownloadProgress: (progressEvent) => {
-          let percentCompleted = Math.round((progressEvent.loaded * 100) / progressEvent.total);
-          setProgress(setInterval(percentCompleted, 10)) // progress is set every 10 milliseconds
+          let percentCompleted = Math.round(progressEvent.loaded * 100  / progressEvent.total);
+          setProgress(setInterval(() => percentCompleted, 10)); // progress is set every 10 milliseconds
         },
     });
     setReports(res.data);
     setTimeout(() => {
       setLoading(false);
-    }, 4000)
+    }, 3000)
     } catch(err)  {
       console.log(err); 
       setProgress(0);
@@ -56,7 +56,6 @@ export default function ReportList() {
     const res = reports.filter(o => 
         o.country.toLowerCase().includes(input.toLowerCase().trim()) 
         || o.city.toLowerCase().includes(input.toLowerCase().trim()));
-
         setResults(res);
   }, [input, reports])
 

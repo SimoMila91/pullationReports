@@ -43,7 +43,7 @@ export default function Report() {
     data.append("country", country);
     data.append("description", description.replaceAll("'", "''"));
 
-    axios.post("http://localhost:3000/upload", data)
+    axios.post("https://pollutionreports.netlify.app/reports/upload", data)
       .then(res => {
         setMessage({
           variant: true,
