@@ -4,6 +4,7 @@ import countryList from 'react-select-country-list';
 import Compress from 'react-image-file-resizer';
 import axios from 'axios';
 import MessageModal from './MessageModal';
+import _ from 'lodash';
 
 
 
@@ -32,6 +33,12 @@ export default function Report() {
   const [modal, setModal] = useState(false);
 
   const options = useMemo(() => countryList().getData(), []);
+  const countryOptions = _.map(options, (state, index) => ({
+    flag: state.value.toLowerCase(),
+    key: index,
+    value: state.label,
+    text: state.label
+  }));
 
   const onSubmit = e => {
     e.preventDefault();
@@ -78,8 +85,7 @@ export default function Report() {
   }, [city, address, country, name, description]);
 
   const changeHandler = (e, value) => {
-    let res = countryList().getLabel(value.value);
-    setCountry(res);
+    setCountry(value.value);
   };
 
   const fileChange = e => {
@@ -121,8 +127,8 @@ export default function Report() {
                 <Dropdown
                   placeholder="Select country"
                   fluid
-                  options={options}
-                  text={country}
+                  options={countryOptions}
+                  search
                   selection
                   onChange={changeHandler}
                 />
