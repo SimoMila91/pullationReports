@@ -23,34 +23,32 @@ export default function ReportList() {
   const [input, setInput] = useState('');
   const [results, setResults] = useState(reports);
   const [progress, setProgress] = useState(0);
-  const [loading, setLoading] = useState(true);
+  const [loading, setLoading] = useState(false);
 
-  const handleChange = e => {
-    setInput(e.target.value);
-  }
-
-  const fetchReports = async () => {
-    try {
-      const res = await axios.get("https://pollutionreports.herokuapp.com/reports", {
-        onDownloadProgress: (progressEvent) => {
-          let percentCompleted = Math.round(progressEvent.loaded * 100  / progressEvent.total);
-          setProgress(setInterval(() => percentCompleted, 10)); // progress is set every 10 milliseconds
-        },
-    });
-    setReports(res.data);
-    setTimeout(() => {
-      setLoading(false);
-    }, 3000)
-    } catch(err)  {
-      console.log(err); 
-      setProgress(0);
-    };
-  }; 
 
   useEffect(() => {
     fetchReports();
   }, []);
 
+  function fetchReports() {
+    setLoading(true);
+    axios.get("https://pollutionreports.herokuapp.com/reports", {
+      onDownloadProgress: (progressEvent) => {
+        const percentage = Math.round((progressEvent.loaded * 100) / progressEvent.total);
+        setProgress(percentage);
+        if (percentage === 100) {
+          setTimeout(() => {
+            setLoading(false);
+          }, 400)
+        }
+      }
+    }).then(res => setReports(res.data))
+    .catch(err => console.log(err));
+  };
+
+  const handleChange = e => {
+    setInput(e.target.value);
+  }
 
   useEffect(() => {
     const res = reports.filter(o => 
