@@ -31,7 +31,7 @@ export default function ReportList() {
 
   const fetchReports = async () => {
     try {
-      const res = await axios.get("https://pollutionreports.herokuapp.com//reports", {
+      const res = await axios.get("https://pollutionreports.herokuapp.com/reports", {
         onDownloadProgress: (progressEvent) => {
           let percentCompleted = Math.round(progressEvent.loaded * 100  / progressEvent.total);
           setProgress(setInterval(() => percentCompleted, 10)); // progress is set every 10 milliseconds
@@ -104,7 +104,7 @@ export default function ReportList() {
                       <Grid.Column key={i} textAlign={ isMobile ? 'center' : 'left'} verticalAlign="middle">
                       <Segment style={heightSegment}>
                       <Item.Group>
-                        <Item relaxed={true}>
+                        <Item relaxed="true">
                           <Item.Image size="medium"  src={`https://pollutionimages.s3.eu-west-3.amazonaws.com/${report.image}`} alt="ciao" className="tran-img" />
                           <Item.Content>
                             <Item.Header as="h4">{report.country}</Item.Header>
