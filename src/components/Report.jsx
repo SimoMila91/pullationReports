@@ -38,8 +38,8 @@ export default function Report() {
     key: index,
     value: state.label,
     text: state.label
-  }));
-
+  })); 
+  
   const onSubmit = e => {
     e.preventDefault();
     const data = new FormData();
@@ -50,7 +50,7 @@ export default function Report() {
     data.append("country", country);
     data.append("description", description.replaceAll("'", "''"));
 
-    axios.post("https://pollutionreports.herokuapp.com//upload", data)
+    axios.post("https://pollutionreports.herokuapp.com/upload", data)
       .then(res => {
         setMessage({
           variant: true,
@@ -132,14 +132,14 @@ export default function Report() {
                   selection
                   onChange={changeHandler}
                 />
-              </Form.Field>  
+              </Form.Field>    
               <Form.Group widths="equal" className="marginForm">
-              <Form.Input 
+                <Form.Input
                   size="mini"
                   label="City"
                   value={city}
                   onChange={e => setCity(e.target.value)}
-                /> 
+                />
                 <Form.Input 
                   size="mini"
                   label="Address"
